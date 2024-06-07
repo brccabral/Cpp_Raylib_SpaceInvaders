@@ -5,8 +5,8 @@ include(GNUInstallDirs)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(${PROJECT_NAME} main.cpp
-        spaceship.cpp)
+add_executable(${PROJECT_NAME} code/main.cpp
+        code/spaceship.cpp)
 target_link_libraries(${PROJECT_NAME} raylib)
 install(TARGETS ${PROJECT_NAME})
 
