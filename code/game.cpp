@@ -22,6 +22,7 @@ void Game::Update(const double deltaTime)
     {
         laser.Update(deltaTime);
     }
+    DeleteInactiveLasers();
 }
 
 void Game::HandleInput(const double deltaTime)
@@ -37,5 +38,20 @@ void Game::HandleInput(const double deltaTime)
     if (IsKeyPressed(KEY_SPACE))
     {
         spaceship.FireLaser();
+    }
+}
+
+void Game::DeleteInactiveLasers()
+{
+    for (auto it = spaceship.lasers.begin(); it != spaceship.lasers.end();)
+    {
+        if (!it->active)
+        {
+            it = spaceship.lasers.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
     }
 }
