@@ -5,6 +5,8 @@ Game::Game()
     obstacles = CreateObstacles();
     aliens = CreateAliens();
     aliensDirection = 1;
+    timeLastAlienFired = GetTime();
+    SetRandomSeed(GetTime());
 }
 
 void Game::Draw() const
@@ -25,6 +27,11 @@ void Game::Draw() const
     {
         alien.Draw();
     }
+
+    for (const auto &laser: alienLasers)
+    {
+        laser.Draw();
+    }
 }
 
 void Game::Update(const double deltaTime)
@@ -33,8 +40,13 @@ void Game::Update(const double deltaTime)
     {
         laser.Update(deltaTime);
     }
-    DeleteInactiveLasers();
     MoveAliens();
+    AlienShootLaser();
+    for (auto &laser: alienLasers)
+    {
+        laser.Update(deltaTime);
+    }
+    DeleteInactiveLasers();
 }
 
 void Game::HandleInput(const double deltaTime)
@@ -60,6 +72,18 @@ void Game::DeleteInactiveLasers()
         if (!it->active)
         {
             it = spaceship.lasers.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+
+    for (auto it = alienLasers.begin(); it != alienLasers.end();)
+    {
+        if (!it->active)
+        {
+            it = alienLasers.erase(it);
         }
         else
         {
@@ -134,6 +158,20 @@ void Game::MoveDownAliens(const int distance)
     for (auto &alien: aliens)
     {
         alien.position.y += distance;
+    }
+}
+
+void Game::AlienShootLaser()
+{
+    const double currentTime = GetTime();
+    if (currentTime - timeLastAlienFired > alienLaserShootInterval && !aliens.empty())
+    {
+        const int randomAlien = GetRandomValue(0, aliens.size() - 1);
+        const Alien &alien = aliens[randomAlien];
+        const float x = alien.position.x + Alien::alienImages[alien.type - 1].width / 2.0f;
+        const float y = alien.position.y + Alien::alienImages[alien.type - 1].height;
+        alienLasers.push_back(Laser({x, y}, 426));
+        timeLastAlienFired = currentTime;
     }
 }
 
