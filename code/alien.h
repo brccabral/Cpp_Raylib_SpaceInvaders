@@ -12,7 +12,7 @@ public:
     void Draw() const;
     [[nodiscard]] int GetType() const;
 
-    Texture2D image{};
+    static Texture2D alienImages[3];
     int type{};
     Vector2 position{};
 };
