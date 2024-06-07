@@ -18,9 +18,17 @@ void Spaceship::Draw() const
 void Spaceship::MoveLeft(const double deltaTime)
 {
     position.x -= speed * deltaTime;
+    if (position.x < 0)
+    {
+        position.x = 0;
+    }
 }
 
 void Spaceship::MoveRight(const double deltaTime)
 {
     position.x += speed * deltaTime;
+    if (position.x > GetScreenWidth() - image.width)
+    {
+        position.x = GetScreenWidth() - image.width;
+    }
 }
