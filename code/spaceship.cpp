@@ -32,3 +32,8 @@ void Spaceship::MoveRight(const double deltaTime)
         position.x = GetScreenWidth() - image.width;
     }
 }
+
+void Spaceship::FireLaser()
+{
+    lasers.push_back(Laser({position.x + image.width / 2.0f - 2, position.y}, -426));
+}

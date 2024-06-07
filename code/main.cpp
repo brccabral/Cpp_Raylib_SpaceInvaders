@@ -1,6 +1,5 @@
 #include <raylib.h>
 #include "game.h"
-#include "laser.h"
 
 int main()
 {
@@ -13,20 +12,18 @@ int main()
     double lastUpdate = GetTime();
 
     Game game;
-    Laser laser = Laser({100, 100}, 500);
 
     while (!WindowShouldClose())
     {
         const double currentTime = GetTime();
         const double deltaTime = currentTime - lastUpdate;
         game.HandleInput(deltaTime);
-        laser.Update(deltaTime);
+        game.Update(deltaTime);
 
         BeginDrawing();
         ClearBackground(grey);
 
         game.Draw();
-        laser.Draw();
 
         EndDrawing();
         lastUpdate = currentTime;
