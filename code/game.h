@@ -19,6 +19,7 @@ private:
     static std::vector<Obstacle> CreateObstacles();
     static std::vector<Alien> CreateAliens();
     void MoveAliens();
+    void MoveDownAliens(int distance);
 
     Spaceship spaceship{};
     std::vector<Obstacle> obstacles;
