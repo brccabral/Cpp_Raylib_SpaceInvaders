@@ -8,6 +8,7 @@ public:
     Laser(Vector2 position, int speed);
     void Update(double deltaTime);
     void Draw() const;
+    bool active{};
 
 private:
 
