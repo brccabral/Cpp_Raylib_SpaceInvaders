@@ -28,6 +28,9 @@ int main()
         EndDrawing();
         lastUpdate = currentTime;
     }
+
+    // we must Unload all textures before CloseWindow()
+    game.UnloadTextures();
     CloseWindow();
     return 0;
 }

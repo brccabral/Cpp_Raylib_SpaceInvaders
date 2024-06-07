@@ -7,10 +7,10 @@ class Alien
 public:
 
     Alien(int type, Vector2 position);
-    ~Alien();
     void Update();
     void Draw() const;
     [[nodiscard]] int GetType() const;
+    static void UnloadImages();
 
     static Texture2D alienImages[3];
     int type{};

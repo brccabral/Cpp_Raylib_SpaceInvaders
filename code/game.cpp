@@ -6,9 +6,6 @@ Game::Game()
     aliens = CreateAliens();
 }
 
-Game::~Game()
-{}
-
 void Game::Draw() const
 {
     spaceship.Draw();
@@ -109,4 +106,10 @@ std::vector<Alien> Game::CreateAliens()
         }
     }
     return newAliens;
+}
+
+void Game::UnloadTextures() const
+{
+    spaceship.UnloadImage();
+    Alien::UnloadImages();
 }

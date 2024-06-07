@@ -8,10 +8,10 @@ class Game
 public:
 
     Game();
-    ~Game();
     void Draw() const;
     void Update(double deltaTime);
     void HandleInput(double deltaTime);
+    void UnloadTextures() const;
 
 private:
 

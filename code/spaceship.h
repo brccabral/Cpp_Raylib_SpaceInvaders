@@ -8,11 +8,11 @@ class Spaceship
 public:
 
     Spaceship();
-    ~Spaceship();
     void Draw() const;
     void MoveLeft(double deltaTime);
     void MoveRight(double deltaTime);
     void FireLaser();
+    void UnloadImage() const;
     std::vector<Laser> lasers;
 
 private:

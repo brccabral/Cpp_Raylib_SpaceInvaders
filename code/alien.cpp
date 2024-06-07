@@ -4,9 +4,13 @@ Texture2D Alien::alienImages[3] = {};
 
 Alien::Alien(const int type, const Vector2 position) : type(type), position(position)
 {
-    if (alienImages[type - 1].id == 0)
+    if (type < 1 || type > 3)
     {
-        switch (type)
+        this->type = 1;
+    }
+    if (alienImages[this->type - 1].id == 0)
+    {
+        switch (this->type)
         {
             case 1:
             {
@@ -25,15 +29,12 @@ Alien::Alien(const int type, const Vector2 position) : type(type), position(posi
             }
             default:
             {
-                alienImages[type - 1] = LoadTexture("resources/Graphics/alien_1.png");
+                alienImages[0] = LoadTexture("resources/Graphics/alien_1.png");
                 break;
             }
         }
     }
 }
-
-Alien::~Alien()
-{}
 
 void Alien::Draw() const
 {
@@ -43,4 +44,12 @@ void Alien::Draw() const
 int Alien::GetType() const
 {
     return type;
+}
+
+void Alien::UnloadImages()
+{
+    for (const auto &alienImage: Alien::alienImages)
+    {
+        UnloadTexture(alienImage);
+    }
 }

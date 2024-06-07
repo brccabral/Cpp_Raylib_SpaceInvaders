@@ -8,10 +8,6 @@ Spaceship::Spaceship()
     fireRate = 0.35;
 }
 
-Spaceship::~Spaceship()
-{
-    UnloadTexture(image);
-}
 void Spaceship::Draw() const
 {
     DrawTextureV(image, position, WHITE);
@@ -42,4 +38,9 @@ void Spaceship::FireLaser()
         lasers.push_back(Laser({position.x + image.width / 2.0f - 2, position.y}, -426));
         lastFireTime = GetTime();
     }
+}
+
+void Spaceship::UnloadImage() const
+{
+    UnloadTexture(image);
 }
