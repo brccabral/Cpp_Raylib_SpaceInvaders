@@ -1,6 +1,5 @@
 #include <raylib.h>
 #include "game.h"
-#include "obstacle.h"
 
 int main()
 {
@@ -13,7 +12,6 @@ int main()
     double lastUpdate = GetTime();
 
     Game game;
-    Obstacle obstacle = Obstacle({100, 100});
 
     while (!WindowShouldClose())
     {
@@ -26,7 +24,6 @@ int main()
         ClearBackground(grey);
 
         game.Draw();
-        obstacle.Draw();
 
         EndDrawing();
         lastUpdate = currentTime;

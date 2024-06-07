@@ -1,7 +1,9 @@
 #include "game.h"
 
 Game::Game()
-{}
+{
+    obstacles = CreateObstacles();
+}
 
 Game::~Game()
 {}
@@ -13,6 +15,11 @@ void Game::Draw() const
     for (const Laser &laser: spaceship.lasers)
     {
         laser.Draw();
+    }
+
+    for (const auto &obstacle: obstacles)
+    {
+        obstacle.Draw();
     }
 }
 
@@ -54,4 +61,17 @@ void Game::DeleteInactiveLasers()
             ++it;
         }
     }
+}
+
+std::vector<Obstacle> Game::CreateObstacles()
+{
+    const int obstaclesWidth = Obstacle::grid[0].size() * 3;
+    const float gap = (GetScreenWidth() - (4 * obstaclesWidth)) / 5.0f;
+    std::vector<Obstacle> newObstacles;
+    for (int i = 0; i < 4; ++i)
+    {
+        const float offset_x = (i + 1) * gap + i * obstaclesWidth;
+        newObstacles.push_back(Obstacle({offset_x, (float) (GetScreenHeight() - 100)}));
+    }
+    return newObstacles;
 }
