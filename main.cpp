@@ -1,4 +1,5 @@
 #include <raylib.h>
+#include "spaceship.h"
 
 int main()
 {
@@ -8,10 +9,14 @@ int main()
     InitWindow(screenWindth, screenHeight, "Space Invaders");
     SetTargetFPS(60);
 
+    Spaceship spaceship;
+
     while (!WindowShouldClose())
     {
         BeginDrawing();
         ClearBackground(grey);
+
+        spaceship.Draw();
 
         EndDrawing();
     }
