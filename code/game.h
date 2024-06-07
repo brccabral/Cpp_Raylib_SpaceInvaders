@@ -9,7 +9,7 @@ public:
     ~Game();
     void Draw() const;
     void Update();
-    void HandleInput();
+    void HandleInput(double deltaTime);
 
 private:
 

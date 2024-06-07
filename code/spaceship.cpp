@@ -14,3 +14,13 @@ void Spaceship::Draw() const
 {
     DrawTextureV(image, position, WHITE);
 }
+
+void Spaceship::MoveLeft(const double deltaTime)
+{
+    position.x -= speed * deltaTime;
+}
+
+void Spaceship::MoveRight(const double deltaTime)
+{
+    position.x += speed * deltaTime;
+}

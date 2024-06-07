@@ -9,16 +9,23 @@ int main()
     InitWindow(screenWindth, screenHeight, "Space Invaders");
     SetTargetFPS(60);
 
+    double lastUpdate = GetTime();
+
     Game game;
 
     while (!WindowShouldClose())
     {
+        const double currentTime = GetTime();
+        const double deltaTime = currentTime - lastUpdate;
+        game.HandleInput(deltaTime);
+
         BeginDrawing();
         ClearBackground(grey);
 
         game.Draw();
 
         EndDrawing();
+        lastUpdate = currentTime;
     }
     CloseWindow();
     return 0;
