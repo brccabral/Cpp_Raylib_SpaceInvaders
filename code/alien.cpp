@@ -28,9 +28,7 @@ Alien::Alien(const int type, const Vector2 position) : type(type), position(posi
 }
 
 Alien::~Alien()
-{
-    UnloadTexture(image);
-}
+{}
 
 void Alien::Draw() const
 {
