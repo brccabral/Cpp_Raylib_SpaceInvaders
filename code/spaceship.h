@@ -21,4 +21,6 @@ private:
     Vector2 position{};
 
     unsigned int speed = 500;
+    double lastFireTime{};
+    double fireRate{};
 };
