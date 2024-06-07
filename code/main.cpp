@@ -1,4 +1,6 @@
 #include <raylib.h>
+
+#include "alien.h"
 #include "game.h"
 
 int main()
@@ -12,6 +14,7 @@ int main()
     double lastUpdate = GetTime();
 
     Game game;
+    Alien alien = Alien(4, {100, 100});
 
     while (!WindowShouldClose())
     {
@@ -24,6 +27,7 @@ int main()
         ClearBackground(grey);
 
         game.Draw();
+        alien.Draw();
 
         EndDrawing();
         lastUpdate = currentTime;
