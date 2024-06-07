@@ -36,6 +36,11 @@ Alien::Alien(const int type, const Vector2 position) : type(type), position(posi
     }
 }
 
+void Alien::Update(const int direction)
+{
+    position.x += direction;
+}
+
 void Alien::Draw() const
 {
     DrawTextureV(alienImages[type - 1], position, WHITE);

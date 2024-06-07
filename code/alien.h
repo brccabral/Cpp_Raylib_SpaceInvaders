@@ -7,7 +7,7 @@ class Alien
 public:
 
     Alien(int type, Vector2 position);
-    void Update();
+    void Update(int direction);
     void Draw() const;
     [[nodiscard]] int GetType() const;
     static void UnloadImages();

@@ -18,8 +18,10 @@ private:
     void DeleteInactiveLasers();
     static std::vector<Obstacle> CreateObstacles();
     static std::vector<Alien> CreateAliens();
+    void MoveAliens();
 
     Spaceship spaceship{};
     std::vector<Obstacle> obstacles;
     std::vector<Alien> aliens;
+    int aliensDirection;
 };
