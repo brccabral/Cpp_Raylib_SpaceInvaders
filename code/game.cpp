@@ -60,6 +60,8 @@ void Game::Update(const double deltaTime)
         mysteryShipSpawnInterval = GetRandomValue(10, 20);
     }
     mystery_ship.Update(deltaTime);
+
+    CheckForCollisions();
 }
 
 void Game::HandleInput(const double deltaTime)
@@ -185,6 +187,26 @@ void Game::AlienShootLaser()
         const float y = alien.position.y + Alien::alienImages[alien.type - 1].height;
         alienLasers.push_back(Laser({x, y}, 426));
         timeLastAlienFired = currentTime;
+    }
+}
+
+void Game::CheckForCollisions()
+{
+    for (auto &laser: spaceship.lasers)
+    {
+        auto it = aliens.begin();
+        while (it != aliens.end())
+        {
+            if (CheckCollisionRecs(it->GetRect(), laser.GetRect()))
+            {
+                it = aliens.erase(it);
+                laser.active = false;
+            }
+            else
+            {
+                ++it;
+            }
+        }
     }
 }
 

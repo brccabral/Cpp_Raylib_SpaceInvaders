@@ -14,6 +14,7 @@ public:
     void FireLaser();
     void UnloadImage() const;
     std::vector<Laser> lasers;
+    Rectangle GetRect() const;
 
 private:
 

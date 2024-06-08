@@ -44,3 +44,8 @@ void Spaceship::UnloadImage() const
 {
     UnloadTexture(image);
 }
+
+Rectangle Spaceship::GetRect() const
+{
+    return {position.x, position.y, float(image.width), float(image.height)};
+}

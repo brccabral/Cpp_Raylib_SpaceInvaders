@@ -9,6 +9,7 @@ public:
     void Update(double deltaTime);
     void Draw() const;
     bool active{};
+    Rectangle GetRect() const;
 
 private:
 

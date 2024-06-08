@@ -12,6 +12,7 @@ public:
     void Spaw();
     void UnloadImage() const;
     bool alive;
+    Rectangle GetRect() const;
 
 private:
 

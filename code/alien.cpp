@@ -58,3 +58,9 @@ void Alien::UnloadImages()
         UnloadTexture(alienImage);
     }
 }
+
+Rectangle Alien::GetRect() const
+{
+    return {position.x, position.y, float(Alien::alienImages[type - 1].width),
+            float(Alien::alienImages[type - 1].height)};
+}

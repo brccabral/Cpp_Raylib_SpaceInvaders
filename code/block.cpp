@@ -7,3 +7,8 @@ void Block::Draw() const
 {
     DrawRectangleV(position, size, color);
 }
+
+Rectangle Block::GetRect() const
+{
+    return {position.x, position.y, size.x, size.y};
+}

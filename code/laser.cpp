@@ -26,3 +26,8 @@ void Laser::Draw() const
         DrawRectangleV(position, size, color);
     }
 }
+
+Rectangle Laser::GetRect() const
+{
+    return {position.x, position.y, size.x, size.y};
+}
