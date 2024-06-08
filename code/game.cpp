@@ -226,6 +226,13 @@ void Game::CheckForCollisions()
                 }
             }
         }
+
+        // spaceship laser againt mystery ship
+        if (CheckCollisionRecs(mystery_ship.GetRect(), laser.GetRect()))
+        {
+            mystery_ship.alive = false;
+            laser.active = false;
+        }
     }
 }
 
