@@ -235,7 +235,7 @@ void Game::CheckForCollisions()
         }
     }
 
-    for (auto& laser:alienLasers)
+    for (auto &laser: alienLasers)
     {
         // aliens laser against obstacles
         for (auto &obstacle: obstacles)
@@ -247,6 +247,26 @@ void Game::CheckForCollisions()
                 {
                     it = obstacle.blocks.erase(it);
                     laser.active = false;
+                }
+                else
+                {
+                    ++it;
+                }
+            }
+        }
+    }
+
+    // Alien against obstacle
+    for (auto &alien: aliens)
+    {
+        for (auto &obstacle: obstacles)
+        {
+            auto it = obstacle.blocks.begin();
+            while (it != obstacle.blocks.end())
+            {
+                if (CheckCollisionRecs(it->GetRect(), alien.GetRect()))
+                {
+                    it = obstacle.blocks.erase(it);
                 }
                 else
                 {
