@@ -31,6 +31,8 @@ private:
     void Reset();
     void InitGame();
     void CheckForHighscore();
+    static void SaveHighscoreToFile(int highscore);
+    static int LoadHighscoreFromFile();
 
     Spaceship spaceship{};
     std::vector<Obstacle> obstacles;

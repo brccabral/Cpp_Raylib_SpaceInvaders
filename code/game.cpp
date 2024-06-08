@@ -1,5 +1,8 @@
 #include "game.h"
 
+#include <fstream>
+#include <iostream>
+
 Game::Game()
 {
     SetRandomSeed(GetTime());
@@ -341,6 +344,7 @@ void Game::InitGame()
     lives = 3;
     isRunning = true;
     score = 0;
+    highScore = LoadHighscoreFromFile();
 }
 
 void Game::CheckForHighscore()
@@ -348,7 +352,38 @@ void Game::CheckForHighscore()
     if (score > highScore)
     {
         highScore = score;
+        SaveHighscoreToFile(highScore);
     }
+}
+
+void Game::SaveHighscoreToFile(const int highscore)
+{
+    std::ofstream highscoreFile("highscore.txt");
+    if (highscoreFile.is_open())
+    {
+        highscoreFile << highscore;
+        highscoreFile.close();
+    }
+    else
+    {
+        std::cerr << "Failed to save highscore to file\n";
+    }
+}
+
+int Game::LoadHighscoreFromFile()
+{
+    int loadedHighscore = 0;
+    std::ifstream highscoreFile("highscore.txt");
+    if (highscoreFile.is_open())
+    {
+        highscoreFile >> loadedHighscore;
+        highscoreFile.close();
+    }
+    else
+    {
+        std::cerr << "Failed to load highscore from file\n";
+    }
+    return loadedHighscore;
 }
 
 void Game::UnloadTextures() const
