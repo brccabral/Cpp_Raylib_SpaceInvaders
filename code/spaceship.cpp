@@ -3,9 +3,7 @@
 Spaceship::Spaceship()
 {
     image = LoadTexture("resources/Graphics/spaceship.png");
-    position = {(GetScreenWidth() - image.width) / 2.0f, (float) (GetScreenHeight() - image.height)};
-    lastFireTime = GetTime();
-    fireRate = 0.35;
+    Reset();
 }
 
 void Spaceship::Draw() const
@@ -48,4 +46,12 @@ void Spaceship::UnloadImage() const
 Rectangle Spaceship::GetRect() const
 {
     return {position.x, position.y, float(image.width), float(image.height)};
+}
+
+void Spaceship::Reset()
+{
+    position = {(GetScreenWidth() - image.width) / 2.0f, (float) (GetScreenHeight() - image.height)};
+    lastFireTime = GetTime();
+    fireRate = 0.35;
+    lasers.clear();
 }

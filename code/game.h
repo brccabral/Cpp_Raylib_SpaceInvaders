@@ -13,6 +13,7 @@ public:
     void Update(double deltaTime);
     void HandleInput(double deltaTime);
     void UnloadTextures() const;
+    bool isRunning{};
 
 private:
 
@@ -23,15 +24,19 @@ private:
     void MoveDownAliens(int distance);
     void AlienShootLaser();
     void CheckForCollisions();
+    void GameOver();
+    void Reset();
+    void InitGame();
 
     Spaceship spaceship{};
     std::vector<Obstacle> obstacles;
     std::vector<Alien> aliens;
-    int aliensDirection;
+    int aliensDirection{};
     std::vector<Laser> alienLasers;
     float alienLaserShootInterval = 0.35f;
-    double timeLastAlienFired;
-    MysteryShip mystery_ship;
-    float mysteryShipSpawnInterval;
-    double timeLastSpawnMysteryShip;
+    double timeLastAlienFired{};
+    MysteryShip mystery_ship{};
+    float mysteryShipSpawnInterval{};
+    double timeLastSpawnMysteryShip{};
+    int lives{};
 };

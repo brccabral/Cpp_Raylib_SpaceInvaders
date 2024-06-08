@@ -15,6 +15,7 @@ public:
     void UnloadImage() const;
     std::vector<Laser> lasers;
     Rectangle GetRect() const;
+    void Reset();
 
 private:
 

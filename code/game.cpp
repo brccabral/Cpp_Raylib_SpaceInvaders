@@ -3,12 +3,7 @@
 Game::Game()
 {
     SetRandomSeed(GetTime());
-    obstacles = CreateObstacles();
-    aliens = CreateAliens();
-    aliensDirection = 1;
-    timeLastAlienFired = GetTime();
-    timeLastSpawnMysteryShip = GetTime();
-    mysteryShipSpawnInterval = GetRandomValue(10, 20);
+    InitGame();
 }
 
 void Game::Draw() const
@@ -40,6 +35,10 @@ void Game::Draw() const
 
 void Game::Update(const double deltaTime)
 {
+    if (!isRunning)
+    {
+        return;
+    }
     for (auto &laser: spaceship.lasers)
     {
         laser.Update(deltaTime);
@@ -66,6 +65,15 @@ void Game::Update(const double deltaTime)
 
 void Game::HandleInput(const double deltaTime)
 {
+    if (!isRunning)
+    {
+        if (IsKeyPressed(KEY_ENTER))
+        {
+            Reset();
+            InitGame();
+        }
+        return;
+    }
     if (IsKeyDown(KEY_LEFT))
     {
         spaceship.MoveLeft(deltaTime);
@@ -254,6 +262,17 @@ void Game::CheckForCollisions()
                 }
             }
         }
+
+        // aliens laser against spaceship
+        if (CheckCollisionRecs(laser.GetRect(), spaceship.GetRect()))
+        {
+            laser.active = false;
+            --lives;
+            if (lives < 1)
+            {
+                GameOver();
+            }
+        }
     }
 
     // Alien against obstacle
@@ -274,7 +293,38 @@ void Game::CheckForCollisions()
                 }
             }
         }
+
+        // aliens against spaceship
+        if (CheckCollisionRecs(alien.GetRect(), spaceship.GetRect()))
+        {
+            GameOver();
+        }
     }
+}
+
+void Game::GameOver()
+{
+    isRunning = false;
+}
+
+void Game::Reset()
+{
+    spaceship.Reset();
+    aliens.clear();
+    alienLasers.clear();
+    obstacles.clear();
+}
+
+void Game::InitGame()
+{
+    obstacles = CreateObstacles();
+    aliens = CreateAliens();
+    aliensDirection = 1;
+    timeLastAlienFired = GetTime();
+    timeLastSpawnMysteryShip = GetTime();
+    mysteryShipSpawnInterval = GetRandomValue(10, 20);
+    lives = 3;
+    isRunning = true;
 }
 
 void Game::UnloadTextures() const
