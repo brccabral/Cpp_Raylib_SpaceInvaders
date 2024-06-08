@@ -12,6 +12,8 @@ int main()
     InitWindow(screenWindth + offset, screenHeight + 2 * offset, "Space Invaders");
     SetTargetFPS(60);
 
+    const Font font = LoadFontEx("resources/Font/monogram.ttf", 64, nullptr, 0);
+
     double lastUpdate = GetTime();
 
     Game game;
@@ -26,6 +28,16 @@ int main()
         BeginDrawing();
         ClearBackground(grey);
         DrawRectangleRoundedLinesEx({10, 10, 780, 780}, 0.18f, 20, 2, yellow);
+        DrawLineEx({25, 730}, {775, 730}, 3, yellow);
+
+        if (game.isRunning)
+        {
+            DrawTextEx(font, "LEVEL 01", {570, 740}, 34, 2, yellow);
+        }
+        else
+        {
+            DrawTextEx(font, "GAME OVER", {570, 740}, 34, 2, yellow);
+        }
 
         game.Draw();
 
