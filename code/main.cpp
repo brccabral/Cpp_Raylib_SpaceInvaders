@@ -47,6 +47,9 @@ int main()
             x += spaceshipImage.width + 5;
         }
 
+        DrawTextEx(font, "SCORE", {50, 15}, 34, 2, yellow);
+        DrawTextEx(font, TextFormat("%05i", game.score), {50, 40}, 34, 2, yellow);
+
         game.Draw();
 
         EndDrawing();

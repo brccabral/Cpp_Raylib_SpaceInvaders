@@ -208,6 +208,18 @@ void Game::CheckForCollisions()
         {
             if (CheckCollisionRecs(it->GetRect(), laser.GetRect()))
             {
+                if (it->type == 1)
+                {
+                    score += 100;
+                }
+                else if (it->type == 2)
+                {
+                    score += 200;
+                }
+                else if (it->type == 3)
+                {
+                    score += 300;
+                }
                 it = aliens.erase(it);
                 laser.active = false;
             }
@@ -240,6 +252,7 @@ void Game::CheckForCollisions()
         {
             mystery_ship.alive = false;
             laser.active = false;
+            score += 500;
         }
     }
 
@@ -325,6 +338,7 @@ void Game::InitGame()
     mysteryShipSpawnInterval = GetRandomValue(10, 20);
     lives = 3;
     isRunning = true;
+    score = 0;
 }
 
 void Game::UnloadTextures() const

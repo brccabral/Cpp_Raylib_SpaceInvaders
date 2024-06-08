@@ -15,6 +15,7 @@ public:
     void UnloadTextures() const;
     bool isRunning{};
     int lives{};
+    int score{};
 
 private:
 
