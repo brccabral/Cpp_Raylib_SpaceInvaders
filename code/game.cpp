@@ -194,6 +194,7 @@ void Game::CheckForCollisions()
 {
     for (auto &laser: spaceship.lasers)
     {
+        // spaceship laser againt aliens
         auto it = aliens.begin();
         while (it != aliens.end())
         {
@@ -205,6 +206,24 @@ void Game::CheckForCollisions()
             else
             {
                 ++it;
+            }
+        }
+
+        // spaceship laser againt obstacles
+        for (auto &obstacle: obstacles)
+        {
+            auto it = obstacle.blocks.begin();
+            while (it != obstacle.blocks.end())
+            {
+                if (CheckCollisionRecs(it->GetRect(), laser.GetRect()))
+                {
+                    it = obstacle.blocks.erase(it);
+                    laser.active = false;
+                }
+                else
+                {
+                    ++it;
+                }
             }
         }
     }
