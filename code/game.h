@@ -1,5 +1,6 @@
 #pragma once
 #include "alien.h"
+#include "mysteryship.h"
 #include "obstacle.h"
 #include "spaceship.h"
 
@@ -29,4 +30,5 @@ private:
     std::vector<Laser> alienLasers;
     float alienLaserShootInterval = 0.35f;
     double timeLastAlienFired;
+    MysteryShip mystery_ship;
 };

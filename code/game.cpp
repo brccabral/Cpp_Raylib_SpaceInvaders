@@ -7,6 +7,7 @@ Game::Game()
     aliensDirection = 1;
     timeLastAlienFired = GetTime();
     SetRandomSeed(GetTime());
+    mystery_ship.Spaw();
 }
 
 void Game::Draw() const
@@ -32,6 +33,8 @@ void Game::Draw() const
     {
         laser.Draw();
     }
+
+    mystery_ship.Draw();
 }
 
 void Game::Update(const double deltaTime)
@@ -47,6 +50,7 @@ void Game::Update(const double deltaTime)
         laser.Update(deltaTime);
     }
     DeleteInactiveLasers();
+    mystery_ship.Update(deltaTime);
 }
 
 void Game::HandleInput(const double deltaTime)

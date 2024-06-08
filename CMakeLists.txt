@@ -11,7 +11,8 @@ add_executable(${PROJECT_NAME} code/main.cpp
         code/laser.cpp
         code/block.cpp
         code/obstacle.cpp
-        code/alien.cpp)
+        code/alien.cpp
+        code/mysteryship.cpp)
 target_link_libraries(${PROJECT_NAME} raylib)
 install(TARGETS ${PROJECT_NAME})
 
