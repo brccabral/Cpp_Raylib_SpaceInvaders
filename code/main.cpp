@@ -13,6 +13,7 @@ int main()
     SetTargetFPS(60);
 
     const Font font = LoadFontEx("resources/Font/monogram.ttf", 64, nullptr, 0);
+    const Texture2D spaceshipImage = LoadTexture("resources/Graphics/spaceship.png");
 
     double lastUpdate = GetTime();
 
@@ -39,6 +40,13 @@ int main()
             DrawTextEx(font, "GAME OVER", {570, 740}, 34, 2, yellow);
         }
 
+        float x = 50.0f;
+        for (int i = 0; i < game.lives; ++i)
+        {
+            DrawTextureV(spaceshipImage, {x, 745}, WHITE);
+            x += spaceshipImage.width + 5;
+        }
+
         game.Draw();
 
         EndDrawing();
@@ -47,6 +55,7 @@ int main()
 
     // we must Unload all textures before CloseWindow()
     game.UnloadTextures();
+    UnloadTexture(spaceshipImage);
     CloseWindow();
     return 0;
 }

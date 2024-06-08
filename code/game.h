@@ -14,6 +14,7 @@ public:
     void HandleInput(double deltaTime);
     void UnloadTextures() const;
     bool isRunning{};
+    int lives{};
 
 private:
 
@@ -38,5 +39,4 @@ private:
     MysteryShip mystery_ship{};
     float mysteryShipSpawnInterval{};
     double timeLastSpawnMysteryShip{};
-    int lives{};
 };
