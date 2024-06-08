@@ -14,18 +14,18 @@ void Spaceship::Draw() const
 void Spaceship::MoveLeft(const double deltaTime)
 {
     position.x -= speed * deltaTime;
-    if (position.x < 0)
+    if (position.x < 25)
     {
-        position.x = 0;
+        position.x = 25;
     }
 }
 
 void Spaceship::MoveRight(const double deltaTime)
 {
     position.x += speed * deltaTime;
-    if (position.x > GetScreenWidth() - image.width)
+    if (position.x > GetScreenWidth() - image.width - 25)
     {
-        position.x = GetScreenWidth() - image.width;
+        position.x = GetScreenWidth() - image.width - 25;
     }
 }
 
@@ -50,7 +50,7 @@ Rectangle Spaceship::GetRect() const
 
 void Spaceship::Reset()
 {
-    position = {(GetScreenWidth() - image.width) / 2.0f, (float) (GetScreenHeight() - image.height)};
+    position = {(GetScreenWidth() - image.width) / 2.0f, (float) (GetScreenHeight() - image.height - 100)};
     lastFireTime = GetTime();
     fireRate = 0.35;
     lasers.clear();

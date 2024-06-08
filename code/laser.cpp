@@ -12,7 +12,7 @@ void Laser::Update(const double deltaTime)
     position.y += speed * deltaTime;
     if (active)
     {
-        if (position.y > GetScreenHeight() || position.y < 0)
+        if (position.y > GetScreenHeight() - 100 || position.y < 25)
         {
             active = false;
         }
