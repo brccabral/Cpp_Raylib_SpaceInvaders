@@ -17,10 +17,7 @@ Rectangle MysteryShip::GetRect() const
     {
         return {position.x, position.y, float(image.width), float(image.height)};
     }
-    else
-    {
-        return {position.x, position.y, 0, 0};
-    }
+    return {position.x, position.y, 0, 0};
 }
 
 void MysteryShip::Update(const double deltaTime)
@@ -32,6 +29,10 @@ void MysteryShip::Update(const double deltaTime)
         {
             alive = false;
         }
+    }
+    else
+    {
+        position.x = -10;
     }
 }
 

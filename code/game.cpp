@@ -9,6 +9,7 @@ Game::Game()
     InitGame();
     music = LoadMusicStream("resources/Sounds/music.ogg");
     PlayMusicStream(music);
+    explosionSound = LoadSound("resources/Sounds/explosion.ogg");
 }
 
 void Game::Draw() const
@@ -228,6 +229,7 @@ void Game::CheckForCollisions()
                 it = aliens.erase(it);
                 laser.active = false;
                 CheckForHighscore();
+                PlaySound(explosionSound);
             }
             else
             {
@@ -260,6 +262,7 @@ void Game::CheckForCollisions()
             laser.active = false;
             score += 500;
             CheckForHighscore();
+            PlaySound(explosionSound);
         }
     }
 
@@ -394,4 +397,5 @@ void Game::UnloadTextures() const
     Alien::UnloadImages();
     mystery_ship.UnloadImage();
     UnloadMusicStream(music);
+    UnloadSound(explosionSound);
 }
