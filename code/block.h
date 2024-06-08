@@ -7,7 +7,7 @@ public:
 
     explicit Block(Vector2 position);
     void Draw() const;
-    Rectangle GetRect() const;
+    [[nodiscard]] Rectangle GetRect() const;
 
 private:
 

@@ -14,7 +14,7 @@ public:
     void FireLaser();
     void UnloadImage() const;
     std::vector<Laser> lasers;
-    Rectangle GetRect() const;
+    [[nodiscard]] Rectangle GetRect() const;
     void Reset();
 
 private:
@@ -25,4 +25,5 @@ private:
     unsigned int speed = 500;
     double lastFireTime{};
     double fireRate{};
+    Sound laserSound{};
 };

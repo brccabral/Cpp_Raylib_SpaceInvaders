@@ -3,6 +3,7 @@
 Spaceship::Spaceship()
 {
     image = LoadTexture("resources/Graphics/spaceship.png");
+    laserSound = LoadSound("resources/Sounds/laser.ogg");
     Reset();
 }
 
@@ -35,12 +36,14 @@ void Spaceship::FireLaser()
     {
         lasers.push_back(Laser({position.x + image.width / 2.0f - 2, position.y}, -426));
         lastFireTime = GetTime();
+        PlaySound(laserSound);
     }
 }
 
 void Spaceship::UnloadImage() const
 {
     UnloadTexture(image);
+    UnloadSound(laserSound);
 }
 
 Rectangle Spaceship::GetRect() const

@@ -11,7 +11,7 @@ public:
     void Draw() const;
     [[nodiscard]] int GetType() const;
     static void UnloadImages();
-    Rectangle GetRect() const;
+    [[nodiscard]] Rectangle GetRect() const;
 
     static Texture2D alienImages[3];
     int type{};

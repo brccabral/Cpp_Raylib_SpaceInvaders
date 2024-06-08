@@ -12,7 +12,7 @@ public:
     void Spaw();
     void UnloadImage() const;
     bool alive;
-    Rectangle GetRect() const;
+    [[nodiscard]] Rectangle GetRect() const;
 
 private:
 
