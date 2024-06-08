@@ -17,6 +17,7 @@ public:
     int lives{};
     int score{};
     int highScore{};
+    Music music{};
 
 private:
 
@@ -44,4 +45,5 @@ private:
     MysteryShip mystery_ship{};
     float mysteryShipSpawnInterval{};
     double timeLastSpawnMysteryShip{};
+    Sound explosionSound{};
 };

@@ -11,6 +11,7 @@ int main()
     constexpr int screenHeight = 700;
     InitWindow(screenWindth + offset, screenHeight + 2 * offset, "Space Invaders");
     SetTargetFPS(60);
+    InitAudioDevice();
 
     const Font font = LoadFontEx("resources/Font/monogram.ttf", 64, nullptr, 0);
     const Texture2D spaceshipImage = LoadTexture("resources/Graphics/spaceship.png");
@@ -21,6 +22,7 @@ int main()
 
     while (!WindowShouldClose())
     {
+        UpdateMusicStream(game.music);
         const double currentTime = GetTime();
         const double deltaTime = currentTime - lastUpdate;
         game.HandleInput(deltaTime);
@@ -62,6 +64,7 @@ int main()
     // we must Unload all textures before CloseWindow()
     game.UnloadTextures();
     UnloadTexture(spaceshipImage);
+    CloseAudioDevice();
     CloseWindow();
     return 0;
 }

@@ -7,6 +7,8 @@ Game::Game()
 {
     SetRandomSeed(GetTime());
     InitGame();
+    music = LoadMusicStream("resources/Sounds/music.ogg");
+    PlayMusicStream(music);
 }
 
 void Game::Draw() const
@@ -391,4 +393,5 @@ void Game::UnloadTextures() const
     spaceship.UnloadImage();
     Alien::UnloadImages();
     mystery_ship.UnloadImage();
+    UnloadMusicStream(music);
 }
