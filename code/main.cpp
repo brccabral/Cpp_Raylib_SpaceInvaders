@@ -50,6 +50,9 @@ int main()
         DrawTextEx(font, "SCORE", {50, 15}, 34, 2, yellow);
         DrawTextEx(font, TextFormat("%05i", game.score), {50, 40}, 34, 2, yellow);
 
+        DrawTextEx(font, "HIGH SCORE", {570, 15}, 34, 2, yellow);
+        DrawTextEx(font, TextFormat("%05i", game.highScore), {655, 40}, 34, 2, yellow);
+
         game.Draw();
 
         EndDrawing();

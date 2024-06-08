@@ -222,6 +222,7 @@ void Game::CheckForCollisions()
                 }
                 it = aliens.erase(it);
                 laser.active = false;
+                CheckForHighscore();
             }
             else
             {
@@ -253,6 +254,7 @@ void Game::CheckForCollisions()
             mystery_ship.alive = false;
             laser.active = false;
             score += 500;
+            CheckForHighscore();
         }
     }
 
@@ -339,6 +341,14 @@ void Game::InitGame()
     lives = 3;
     isRunning = true;
     score = 0;
+}
+
+void Game::CheckForHighscore()
+{
+    if (score > highScore)
+    {
+        highScore = score;
+    }
 }
 
 void Game::UnloadTextures() const

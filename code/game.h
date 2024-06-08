@@ -16,6 +16,7 @@ public:
     bool isRunning{};
     int lives{};
     int score{};
+    int highScore{};
 
 private:
 
@@ -29,6 +30,7 @@ private:
     void GameOver();
     void Reset();
     void InitGame();
+    void CheckForHighscore();
 
     Spaceship spaceship{};
     std::vector<Obstacle> obstacles;
