@@ -31,4 +31,6 @@ private:
     float alienLaserShootInterval = 0.35f;
     double timeLastAlienFired;
     MysteryShip mystery_ship;
+    float mysteryShipSpawnInterval;
+    double timeLastSpawnMysteryShip;
 };

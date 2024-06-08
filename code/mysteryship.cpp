@@ -6,7 +6,7 @@ MysteryShip::MysteryShip()
     speed = 213;
 }
 
-MysteryShip::~MysteryShip()
+void MysteryShip::UnloadImage() const
 {
     UnloadTexture(image);
 }

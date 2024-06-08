@@ -2,12 +2,13 @@
 
 Game::Game()
 {
+    SetRandomSeed(GetTime());
     obstacles = CreateObstacles();
     aliens = CreateAliens();
     aliensDirection = 1;
     timeLastAlienFired = GetTime();
-    SetRandomSeed(GetTime());
-    mystery_ship.Spaw();
+    timeLastSpawnMysteryShip = GetTime();
+    mysteryShipSpawnInterval = GetRandomValue(10, 20);
 }
 
 void Game::Draw() const
@@ -50,6 +51,14 @@ void Game::Update(const double deltaTime)
         laser.Update(deltaTime);
     }
     DeleteInactiveLasers();
+
+    const double currentTime = GetTime();
+    if (currentTime - timeLastSpawnMysteryShip > mysteryShipSpawnInterval)
+    {
+        mystery_ship.Spaw();
+        timeLastSpawnMysteryShip = currentTime;
+        mysteryShipSpawnInterval = GetRandomValue(10, 20);
+    }
     mystery_ship.Update(deltaTime);
 }
 
@@ -183,4 +192,5 @@ void Game::UnloadTextures() const
 {
     spaceship.UnloadImage();
     Alien::UnloadImages();
+    mystery_ship.UnloadImage();
 }

@@ -7,10 +7,10 @@ class MysteryShip
 public:
 
     MysteryShip();
-    ~MysteryShip();
     void Update(double deltaTime);
     void Draw() const;
     void Spaw();
+    void UnloadImage() const;
     bool alive;
 
 private:
