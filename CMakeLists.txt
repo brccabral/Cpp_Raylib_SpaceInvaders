@@ -5,6 +5,8 @@ include(GNUInstallDirs)
 
 set(CMAKE_CXX_STANDARD 17)
 
+find_package(raylib REQUIRED)
+
 add_executable(${PROJECT_NAME} code/main.cpp
         code/spaceship.cpp
         code/game.cpp
@@ -17,10 +19,8 @@ target_link_libraries(${PROJECT_NAME} raylib)
 install(TARGETS ${PROJECT_NAME})
 
 if (WIN32)
-    target_include_directories(${PROJECT_NAME} PRIVATE ${RAYLIB_PATH}/include)
-    target_link_directories(${PROJECT_NAME} PRIVATE ${RAYLIB_PATH}/lib)
-    target_link_libraries(${PROJECT_NAME} gdi32 msvcrtd winmm)
-    set(COMPILE_FLAGS "/NODEFAULTLIB:libcmt /NODEFAULTLIB:msvcrtd")
+    target_link_libraries(${PROJECT_NAME} gdi32 winmm)
+    set(COMPILE_FLAGS "/NODEFAULTLIB:libcmt")
 endif ()
 
 # copy resources to Build folder for debugging

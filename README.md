@@ -13,3 +13,5 @@ resources/Sounds/explosion.ogg
 resources/Sounds/laser.ogg
 resources/Sounds/music.ogg
 ```
+
+On Windows, make sure `C:\path\to\raylib` is in your `%PATH%`  
